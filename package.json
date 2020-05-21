@@ -1,5 +1,5 @@
 {
-  "name": "kafkabus-common",
+  "name": "@servicebus/kafkabus-common",
   "version": "0.0.0-development",
   "description": "kafkabus bus factory with common middleware",
   "main": "./lib/bus.js",
