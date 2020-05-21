@@ -1,7 +1,7 @@
 {
-  "name": "servicebus-bus-common",
+  "name": "kafkabus-common",
   "version": "0.0.0-development",
-  "description": "servicebus bus factory with common middleware",
+  "description": "kafkabus bus factory with common middleware",
   "main": "./lib/bus.js",
   "scripts": {
     "commit": "git-cz",
@@ -14,8 +14,8 @@
     "travis-deploy-once": "travis-deploy-once"
   },
   "dependencies": {
-    "@servicebus/rabbitbus": "^1.0.0",
-    "@servicebus/retry": "^1.0.0",
+    "@servicebus/kafkabus": "^1.0.2",
+    "@servicebus/retry": "^1.0.1",
     "llog": "^0.2.0"
   },
   "devDependencies": {

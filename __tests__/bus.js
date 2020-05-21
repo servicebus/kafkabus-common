@@ -7,12 +7,12 @@ const {
   onBusReady
 } = bus
 
-jest.mock('@servicebus/rabbitbus', () => {
+jest.mock('@servicebus/kafkabus', () => {
   return {
     bus: () => {
       return {
         use: jest.fn(),
-        logger: jest.fn(),
+        // logger: jest.fn(),
         package: jest.fn(),
         correlate: jest.fn()
       }
@@ -22,12 +22,12 @@ jest.mock('@servicebus/rabbitbus', () => {
 jest.mock('@servicebus/retry')
 
 describe('lib/bus', () => {
-  it('should make a bus when makeBus is called', () => {
+  it('should make a bus when makeBus is called', async () => {
     expect(handleError).toBeDefined()
     expect(makeBus).toBeDefined()
     expect(throwErr).toBeDefined()
 
-    let bus = makeBus()
+    let bus = await makeBus()
     expect(bus).toMatchSnapshot()
   })
 
@@ -43,22 +43,14 @@ describe('lib/bus', () => {
     }).toThrow()
   })
 
-  it('should work with url or auth config', () => {
+  it('auth config', () => {
     expect(() => {
       makeBus({
-        rabbitmq: {
-          host: 'localhost',
-          port: 5672,
-          user: 'guest',
-          password: 'guest'
-        }
-      })
-    }).not.toThrow()
-
-    expect(() => {
-      makeBus({
-        rabbitmq: {
-          url: 'amqp://localhost:5672'
+        kafka: {
+          brokers: ['localhost:9093', 'localhost:9095', 'localhost:9097'],
+          connectionTimeout: 3000,
+          host: '127.0.0.1',
+          port: 9092,
         }
       })
     }).not.toThrow()
