@@ -9,9 +9,7 @@
     "lint:fix": "eslint --fix lib __tests__",
     "test": "NODE_ENV=test jest --config jest.json --coverage --verbose",
     "test:staging": "jest --config jest.staging.json --verbose --runInBand",
-    "test:watch": "NODE_ENV=test jest --config jest.json --watch --coverage --verbose",
-    "semantic-release": "semantic-release",
-    "travis-deploy-once": "travis-deploy-once"
+    "test:watch": "NODE_ENV=test jest --config jest.json --watch --coverage --verbose"
   },
   "dependencies": {
     "@servicebus/kafkabus": "^1.0.2",
