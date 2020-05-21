@@ -1,30 +1,28 @@
-# servicebus-bus-common
-[![Build Status](https://travis-ci.org/patrickleet/servicebus-bus-common.svg?branch=master)](https://travis-ci.org/patrickleet/servicebus-bus-common)
-[![codecov](https://codecov.io/gh/patrickleet/servicebus-bus-common/branch/master/graph/badge.svg)](https://codecov.io/gh/patrickleet/servicebus-bus-common) [![Greenkeeper badge](https://badges.greenkeeper.io/patrickleet/servicebus-bus-common.svg)](https://greenkeeper.io/)
+# @servicebus/kafkabus-common
+[![Build Status](https://travis-ci.org/servicebus/kafkabus-common.svg?branch=master)](https://travis-ci.org/servicebus/kafkabus-common)
+[![codecov](https://codecov.io/gh/servicebus/kafkabus-common/branch/master/graph/badge.svg)](https://codecov.io/gh/servicebus/kafkabus-common)
 
 ## Usage Example
 
+**start.mjs**
 ```
-#!/bin/sh 
-":" //# http://sambal.org/?p=1014 ; exec /usr/bin/env node --experimental-modules "$0" "$@"
-
 import path from 'path'
 import log from 'llog'
 import errortrap from 'errortrap'
-import registerHandlers from 'servicebus-register-handlers'
-import { makeBus, handleError } from 'servicebus-bus-common';
+import registerHandlers from '@servicebus/register-handlers'
+import { makeBus, handleError } from '@servicebus/kafkabus-common';
 import { config } from '../config.mjs'
 
 errortrap()
 
 const bus = makeBus(config)
-const { queuePrefix } = config
+const { serviceName } = config
 
 registerHandlers({
   bus,
   handleError,
   path:  path.resolve(process.cwd(), 'handlers'),
-  queuePrefix
+  queuePrefix: serviceName
 })
 
 log.info('service is running')
@@ -34,14 +32,15 @@ log.info('service is running')
 
 ```
 {
-  prefetch: 10,
-  queuePrefix: 'microservice',
+  serviceName: 'microservice',
   redis: {
     host: process.env.REDIS_HOST,
     port: process.env.REDIS_PORT
   },
-  rabbitmq: {
-    url: process.env.RABBITMQ_URL
-  }
+  kafka: {
+    host: process.env.KAFKA_HOST || '127.0.0.1',
+    port: process.env.KAFKA_PORT || '9092',
+    brokers: process.env.KAFKA_BROKERS && process.env.KAFKA_BROKERS.split(',') || ['localhost:9092', 'localhost:9095', 'localhost:9098']
+  },
 }
 ```
