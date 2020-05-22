@@ -32,15 +32,8 @@ Object {
       Array [
         undefined,
       ],
-      Array [
-        undefined,
-      ],
     ],
     "results": Array [
-      Object {
-        "type": "return",
-        "value": undefined,
-      },
       Object {
         "type": "return",
         "value": undefined,

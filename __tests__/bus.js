@@ -19,7 +19,6 @@ jest.mock('@servicebus/kafkabus', () => {
     }
   }
 })
-jest.mock('@servicebus/retry')
 
 describe('lib/bus', () => {
   it('should make a bus when makeBus is called', async () => {
