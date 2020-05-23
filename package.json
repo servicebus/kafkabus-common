@@ -12,7 +12,7 @@
     "test:watch": "NODE_ENV=test jest --config jest.json --watch --coverage --verbose"
   },
   "dependencies": {
-    "@servicebus/kafkabus": "2.0.0",
+    "@servicebus/kafkabus": "2.0.3",
     "llog": "0.2.0"
   },
   "devDependencies": {
