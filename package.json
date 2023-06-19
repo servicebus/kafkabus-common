@@ -16,7 +16,7 @@
     "llog": "0.2.0"
   },
   "devDependencies": {
-    "commitizen": "4.2.2",
+    "commitizen": "4.3.0",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "7.17.0",
     "eslint-config-standard": "14.1.1",
